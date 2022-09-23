@@ -60,8 +60,6 @@ class User extends Authenticatable implements JWTSubject
     {
         return [
             'user_id' => $this->id,
-            'tenant_id' => $this->getTenantId()
-
 
         ];
     }
@@ -71,12 +69,6 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(Tenant::class, 'tenant_user');
     }
 
-    public function getTenantId()
-    {
-        foreach($this->tenants as $tenant) {
-          return  $tenant->id;
-        }
-    }
 
     public function products()
     {

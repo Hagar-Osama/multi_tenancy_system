@@ -1,15 +1,33 @@
 <?php
+
 namespace App\Http\Traits;
 
-trait ProductTrait {
+use Tymon\JWTAuth\Facades\JWTAuth;
 
-    public function getAllProducts() {
+trait ProductTrait
+{
 
-        return $this->productModel::get();
+    public function getAllProducts()
+    {
+
+        $token = JWTAuth::getToken();
+        $payLoad = JWTAuth::getPayload($token)->toArray();
+        if ($this->productModel::where('user_id', '!=', $payLoad['user_id'])->get()) {
+            return response()->json(['message' => 'No product Found', 'status' => 404]);
+        }
     }
 
-    public function getProductById($productId) {
+    public function getProductById($productId)
+    {
 
-        return $this->productModel::findOrFail($productId);
+
+        // $token = JWTAuth::getToken();
+        // $payLoad = JWTAuth::getPayload($token)->toArray();
+
+        // if ($this->productModel::where('user_id', '!=', $payLoad['user_id'])->first()) {
+        //     return response()->json('You Cant Make Changes On the Product');
+        // } else {
+        //     $product = $this->productModel::where([['user_id', $payLoad['user_id']], ['id', $productId]])->first();
+        // }
     }
 }

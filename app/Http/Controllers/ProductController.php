@@ -15,7 +15,6 @@ class ProductController extends Controller
     public function __construct(ProductInterface $productInterface)
     {
         $this->productInterface = $productInterface;
-        // $this->middleware('auth:api');
 
 
     }
