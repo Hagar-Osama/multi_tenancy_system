@@ -15,6 +15,8 @@ class ProductController extends Controller
     public function __construct(ProductInterface $productInterface)
     {
         $this->productInterface = $productInterface;
+        // $this->middleware('auth:api');
+
 
     }
 
@@ -33,8 +35,8 @@ class ProductController extends Controller
         return $this->productInterface->update($request);
     }
 
-    public function destroy(DeleteProductRequest $request)
+    public function destroy($productId)
     {
-        return $this->productInterface->destroy($request);
+        return $this->productInterface->destroy($productId);
     }
 }

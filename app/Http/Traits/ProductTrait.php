@@ -5,7 +5,7 @@ trait ProductTrait {
 
     public function getAllProducts() {
 
-        return $this->productModel::all();
+        return $this->productModel::get();
     }
 
     public function getProductById($productId) {

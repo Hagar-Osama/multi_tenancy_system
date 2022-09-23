@@ -4,7 +4,7 @@ namespace App\Http\Traits;
 
 use Illuminate\Support\Facades\File;
 
-trait ImagesTraits
+trait ImagesTrait
 {
 
     public function uploadFile($file, $path, $fileName,  $oldFile = null)
@@ -13,7 +13,7 @@ trait ImagesTraits
 
         if ($oldFile) {
 
-            File::delete($oldFile);
+            File::deleteDirectory($oldFile);
         }
     }
 

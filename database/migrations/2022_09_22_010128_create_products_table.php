@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('image');
             $table->longText('description');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
