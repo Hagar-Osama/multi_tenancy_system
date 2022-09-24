@@ -24,7 +24,7 @@ class AddProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:20|unique:products,name,'. $this->productId,
+            'name' => 'required|max:20|unique:products,name,NULL,id,user_id,'. auth()->user()->id,
             'price' => 'required',
             'quantity' => 'required',
             'description' => 'required|max:255',
