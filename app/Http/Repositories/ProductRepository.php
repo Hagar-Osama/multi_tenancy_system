@@ -37,7 +37,7 @@ class ProductRepository implements ProductInterface
     {
         $token = JWTAuth::getToken();
         $payLoad = JWTAuth::getPayload($token)->toArray();
-        if (Auth::user()->email != $payLoad['user_id']) {
+        if (Auth::user()->email != $payLoad['email']) {
             return response()->json('You Cant Add Products');
         } else {
             $image = $request->file('image');
@@ -77,7 +77,7 @@ class ProductRepository implements ProductInterface
             ]);
             return $this->apiresponse(200, 'Product updated successfully', null, $product);
         } else {
-            return response()->json('You Cant Make Changes On the Product, You Are Not Authorized');
+            return response()->json('You Cant Make Changes On the Product');
         }
     }
 
@@ -90,7 +90,7 @@ class ProductRepository implements ProductInterface
             $this->deleteFile('storage/products/' . $product->name);
             return $this->apiresponse(204, 'Product deleted successfully', null, $product);
         } else {
-            return response()->json('You Cant Delete this Product, You Are Not Authorized');
+            return response()->json('You Cant Delete this Product');
         }
     }
 }
