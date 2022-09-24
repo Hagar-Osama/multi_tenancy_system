@@ -21,12 +21,6 @@ class AuthRepository implements AuthInterface
         $this->userModel = $user;
     }
 
-    public function index()
-    {
-        $users = $this->userModel::with('tenants')->get();
-        return response()->json($users);
-    }
-
     public function register($request)
     {
         $user = $this->userModel::create([

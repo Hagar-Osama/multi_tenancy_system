@@ -23,7 +23,6 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/logout', [AuthController::class, 'logout']);
-    Route::get('/users', [AuthController::class, 'index']);
     //product Routes
     Route::controller(ProductController::class)->prefix('products')->group(function () {
         Route::get('/', 'index');

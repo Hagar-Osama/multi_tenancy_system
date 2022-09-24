@@ -18,11 +18,6 @@ class AuthController extends Controller
 
     }
 
-    public function index()
-    {
-        return $this->AuthInterface->index();
-    }
-
 
     public function register(AddAuthRequest $request)
     {
@@ -46,7 +41,7 @@ class AuthController extends Controller
 
     }
 
-   
+
 
 
 

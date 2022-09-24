@@ -37,9 +37,8 @@ class ProductRepository implements ProductInterface
     {
         $token = JWTAuth::getToken();
         $payLoad = JWTAuth::getPayload($token)->toArray();
-        if (Auth::user()->email != $payLoad['email']) {
-            return response()->json('You Cant Add Products');
-        } else {
+        if (Auth::user()->email == $payLoad['email']) {
+
             $image = $request->file('image');
             $imageName = $image->hashName();
             $this->uploadFile($image, 'products/' . $request->name, $imageName, null);
@@ -51,8 +50,10 @@ class ProductRepository implements ProductInterface
                 'image' => $imageName,
                 'user_id' => auth()->user()->id,
             ]);
+            return $this->apiresponse(201, 'Product Created successfully', null, $product);
+        } else {
+            return response()->json('You Cant Add Products');
         }
-        return $this->apiresponse(201, 'Product Created successfully', null, $product);
     }
 
     public function update($request)

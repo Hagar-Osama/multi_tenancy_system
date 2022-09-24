@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 interface AuthInterface {
 
-    public function index();
-
     public function register($request);
 
     public function createNewToken($token);
