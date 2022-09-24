@@ -25,7 +25,7 @@ networks:
 
 mysql:
     image: mysql:5.7.22
-    container_name: mysql
+    container_name: 127.0.0.1
     restart: unless-stopped
     tty: true
     port:
